@@ -1,0 +1,26 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model ContentChunk {
+  id        String   @id @default(cuid())
+  content   String   @db.Text
+  source    String
+  embedding Float[]
+  metadata  Json
+  createdAt DateTime @default(now())
+}
+
+model UserQuery {
+  id            String   @id @default(cuid())
+  userInput     String   @db.Text
+  geminResponse String   @db.Text
+  kimiResponse  String   @db.Text
+  deepseekResp  String   @db.Text
+  createdAt     DateTime @default(now())
+}
