@@ -2,14 +2,19 @@ import { createClient } from '@deepgram/sdk';
 
 const deepgram = createClient(process.env.DEEPGRAM_API_KEY!);
 
-export async function transcribe(audioBuffer: Buffer): Promise<string> {
+export async function transcribe(audioBuffer: Buffer, mimetype?: string): Promise<string> {
+    const normalizedMimeType =
+        mimetype && mimetype !== 'application/octet-stream'
+            ? mimetype
+            : 'audio/webm';
+
     const { result, error } = await deepgram.listen.prerecorded.transcribeFile(
         audioBuffer,
         {
             model: 'nova-2',
             language: "en",
             smart_format: true,
-            mimetype: 'audio/wav',
+            mimetype: normalizedMimeType,
         }
     );
 

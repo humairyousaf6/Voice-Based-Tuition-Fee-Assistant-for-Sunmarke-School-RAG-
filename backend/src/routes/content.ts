@@ -8,7 +8,8 @@ router.post('/load-website', async (req, res) => {
         const result = await loadWebsiteContent();
         res.json({ success: true, message: result });
     } catch (error) {
-        res.status(500).json({ error: 'Failed to load content' });
+        const message = String((error as any)?.message || error || 'Failed to load content');
+        res.status(500).json({ error: message });
     }
 });
 

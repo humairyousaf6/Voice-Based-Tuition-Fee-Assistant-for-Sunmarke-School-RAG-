@@ -18,6 +18,7 @@ interface AgentState {
     setResponses: (responses: any) => void;
     setModelResponse: (model: 'gemini' | 'kimi' | 'deepseek', data: any) => void;
     setError: (error: string | null) => void;
+    resetSession: () => void;
 }
 
 export const useAgentStore = create<AgentState>((set) => ({
@@ -41,5 +42,10 @@ export const useAgentStore = create<AgentState>((set) => ({
             [model]: data
         }
     })),
-    setError: (error) => set({ error })
+    setError: (error) => set({ error }),
+    resetSession: () => set({
+        responses: null,
+        error: null,
+        loadingStates: { gemini: false, kimi: false, deepseek: false },
+    }),
 }));
