@@ -184,3 +184,8 @@ Add the same backend environment variables listed above in the Vercel project se
 - Add production monitoring and error tracking
 - Improve backend text-to-speech reliability
 
+## 👨‍💻 Author
+
+Muhammad Humair
+
+AI/ML & Automation Engineer
